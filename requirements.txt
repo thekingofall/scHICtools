@@ -1,0 +1,7 @@
+# requirements.txt
+
+# 如果使用了特定的Python库，请在这里列出，例如：
+# numpy>=1.18.0
+# pandas>=1.0.0
+
+# 对于当前脚本，可能不需要额外的Python依赖

@@ -1,0 +1,10 @@
+README.md
+setup.py
+scHICprocess/__init__.py
+scHICprocess/hicpro_pipeline.py
+scHICprocess/utils.py
+scHICtools.egg-info/PKG-INFO
+scHICtools.egg-info/SOURCES.txt
+scHICtools.egg-info/dependency_links.txt
+scHICtools.egg-info/entry_points.txt
+scHICtools.egg-info/top_level.txt
