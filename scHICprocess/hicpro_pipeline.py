@@ -7,29 +7,29 @@ import configparser
 import shutil
 from datetime import datetime
 
-# 从 utils.py 引入 run_pipeline 函数
+# Import run_pipeline function from utils.py
 from .utils import run_pipeline
 
 
 def load_defaults():
     """
-    读取 scHICprocess/config/default_config.ini 中的默认值，返回字典。
+    Load default values from scHICprocess/config/default_config.ini and return as dict.
     """
-    # 找到 config/default_config.ini 的绝对路径
+    # Get absolute path to config/default_config.ini
     config_path = os.path.join(
         os.path.dirname(__file__), 
         "config", 
         "default_config.ini"
     )
     if not os.path.isfile(config_path):
-        print(f"警告: 找不到默认配置文件: {config_path}")
+        print(f"Warning: Default config file not found: {config_path}")
         return {}
 
     parser = configparser.ConfigParser()
     parser.read(config_path)
     defaults = dict(parser["DEFAULT"])
 
-    # configparser 读取到的值均是 str，需要手动转换某些字段
+    # Convert specific fields from str to appropriate types
     if "cpu" in defaults:
         defaults["cpu"] = int(defaults["cpu"])
     if "config_type" in defaults:
@@ -40,7 +40,7 @@ def load_defaults():
 
 def parse_cli(defaults):
     """
-    解析命令行参数；若用户没传参，就使用 defaults 中的值。
+    Parse command line arguments; use defaults if user doesn't provide values.
     """
     parser = argparse.ArgumentParser(
         description="Run HiC-Pro pipeline with optional parameters."
@@ -114,13 +114,13 @@ def parse_cli(defaults):
 
 
 def main():
-    # 1. 从 default_config.ini 读取默认值
+    # 1. Load default values from default_config.ini
     defaults = load_defaults()
 
-    # 2. 解析命令行，优先覆盖 defaults
+    # 2. Parse command line arguments, overriding defaults if provided
     args = parse_cli(defaults)
 
-    # 3. 调用 utils.run_pipeline() 执行整个流程
+    # 3. Execute the pipeline by calling utils.run_pipeline()
     run_pipeline(args)
 
 
